@@ -49,7 +49,6 @@ class AlertTest {
 	public static void setupClass() {
 		System.setProperty("webdriver.gecko.driver", "/home/eclipse/geckodriver-v0.26.0-linux64/geckodriver");
 		WebApp.start();
-			
 	}
 
 	@BeforeEach
@@ -103,7 +102,7 @@ class AlertTest {
 		driver.get("http://localhost:8080/");
 		driver2.get("http://localhost:8080/");
 
-		WebDriverWait wait = new WebDriverWait(driver, 5); // seconds
+		WebDriverWait wait = new WebDriverWait(driver, 5); // Configuracion seconds
 		WebDriverWait wait2 = new WebDriverWait(driver2, 5); // seconds
 		
 		// Locate single element
@@ -111,16 +110,13 @@ class AlertTest {
 		WebElement nickname = driver.findElement(By.id("nickname"));
 		
 		nickname.sendKeys("Jugador1");
-		wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("nickname"), "Jug1"));
-		wait.until(ExpectedConditions.textToBePresentInElement(nickname, "Jug1"));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("startBtn")));
 		startBtn.click();
 		
 		WebElement startBtn2 = driver2.findElement(By.id("startBtn"));
 		WebElement nickname2 = driver2.findElement(By.id("nickname"));
 		
-		nickname2.sendKeys("jugador2");
-		wait2.until(ExpectedConditions.textToBePresentInElementValue(By.id("nickname"), "Jug2"));
+		nickname2.sendKeys("Jugador2");
 		wait2.until(ExpectedConditions.elementToBeClickable(By.id("startBtn")));
 		startBtn2.click();
 		
@@ -144,13 +140,13 @@ class AlertTest {
 		String textoAlert2 = driver2.switchTo().alert().getText();
 		if(jugGanador == -1) { //empate
 			assertThat(textoAlert1, is("Draw!"));
-			assertThat(textoAlert1, is("Draw!"));
+			assertThat(textoAlert2, is("Draw!"));
 		}else if(jugGanador == 0) {  //gana jugador 1
-			assertThat(textoAlert1, is("Jug1 wins! Jug2 looses."));
-			assertThat(textoAlert2, is("Jug1 wins! Jug2 looses."));
+			assertThat(textoAlert1, is("Jugador1 wins! Jugador2 looses."));
+			assertThat(textoAlert2, is("Jugador1 wins! Jugador2 looses."));
 		}else {						 //gana jugador 2
-			assertThat(textoAlert1, is("Jug2 wins! Jug1 looses."));
-			assertThat(textoAlert2, is("Jug2 wins! Jug1 looses."));
+			assertThat(textoAlert1, is("Jugador2 wins! Jugador1 looses."));
+			assertThat(textoAlert2, is("Jugador2 wins! Jugador1 looses."));
 		}
 
 		
