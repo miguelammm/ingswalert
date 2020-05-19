@@ -3,10 +3,7 @@ pipeline {
 
     stages {
         agent any
-      environment {
-        AWS_ACCESS_KEY_ID     = credentials('miguelid')
-        AWS_SECRET_ACCESS_KEY = credentials('123456')
-    }      
+     
         tools {
       		// Install the Maven version configured as "M3" and add it to the path.
       		maven "M3"
