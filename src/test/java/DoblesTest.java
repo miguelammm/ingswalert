@@ -1,4 +1,4 @@
-package test;
+
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -36,7 +36,7 @@ import es.codeurjc.ais.tictactoe.TicTacToeGame.WinnerValue;
  *
  */
 @DisplayName("Clase TicTacToeGame: funcionamiento del juego")
-class PruebasConDobles {
+class DoblesTest {
 	TicTacToeGame ticTac;
 	Connection conexion1;
 	Connection conexion2;

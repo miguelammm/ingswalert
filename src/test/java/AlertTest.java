@@ -1,4 +1,4 @@
-package test;
+
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,7 +18,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -53,8 +56,31 @@ class AlertTest {
 
 	@BeforeEach
 	public void setupTest() {
-		driver = new FirefoxDriver();
-		driver2 = new FirefoxDriver();
+		 FirefoxBinary firefoxBinary = new FirefoxBinary();
+		 firefoxBinary.addCommandLineOptions("--headless");
+		 firefoxBinary.addCommandLineOptions("--no-sandbox");
+		 FirefoxBinary firefoxBinary2 = new FirefoxBinary();
+		 firefoxBinary2.addCommandLineOptions("--headless");
+		 firefoxBinary2.addCommandLineOptions("--no-sandbox");
+		 
+		FirefoxOptions options = new FirefoxOptions()
+			    .setProfile(new FirefoxProfile());
+		options.setBinary(firefoxBinary);
+		FirefoxOptions options2 = new FirefoxOptions()
+			    .setProfile(new FirefoxProfile());
+		options2.setBinary(firefoxBinary2);
+		
+		options.addPreference("browser.startup.page", 1);
+		//options.addPreference("browser.startup.homepage", "http://localhost:8080/");
+		options2.addPreference("browser.startup.page", 1);
+		//options2.addPreference("browser.startup.homepage", "http://localhost:8080/");
+		try {
+			driver = new FirefoxDriver(options);
+			driver2 = new FirefoxDriver(options2);
+		}catch (Exception e) {
+			System.out.println("error");
+		}
+
 	}
 
 	@AfterEach

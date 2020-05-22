@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-            	git 'https://github.com/miguelammm/tictactoe.git'
+            	git 'file:///home/miguelamartin/eclipse-proyectos/tic-tac-toe-enunciado/'
 
             	// Run Maven on a Unix agent.
             	sh "mvn -Dmaven.test.failure.ignore=true clean package"
