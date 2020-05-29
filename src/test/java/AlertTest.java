@@ -162,7 +162,9 @@ class AlertTest {
 			i++;
 		}
 
+		wait.until(ExpectedConditions.alertIsPresent());
 		String textoAlert1 = driver.switchTo().alert().getText();
+		wait2.until(ExpectedConditions.alertIsPresent());
 		String textoAlert2 = driver2.switchTo().alert().getText();
 		if(jugGanador == -1) { //empate
 			assertThat(textoAlert1, is("Draw!"));
